@@ -1,12 +1,8 @@
-<div id="<%= dom_id course %>">
+<div id="<%= dom_id course %>" class="max-m-5m rounded-b overflow-hidden shadow-lg hover:bg-voodo-100">
+<%= link_to course, class: "flex flex-col h-full" do %>
+<%= image_tag("https://via.placeholder.com/100")%>
   <p class="my-5">
     <strong class="block font-medium mb-1">Title:</strong>
     <%= course.title %>
   </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= course.description %>
-  </p>
-
 </div>
