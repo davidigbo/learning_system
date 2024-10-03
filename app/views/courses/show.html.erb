@@ -16,7 +16,7 @@
       </div>
     <% end %>
   </div>
-    <span><%= @course.lessons.count %> lessons </span>
+   <span><%= pluralize(@course.lessons.count, "lesson") %></span>
 </div>
 
     <%= link_to "Back to courses", courses_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
