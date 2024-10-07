@@ -31,6 +31,26 @@
         <% end %>
       </div>
       <% if @course.paid %>
+         <div class="mt-6 flex justify-center items-center w-full">
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden w-full">
+            <div class="bg-amaranth-500 p-4">
+              <h2 class="text-white>50 text-2xl font-bold">Get Full Access</h2>
+          </div>
+          <div class="p-4">
+            <% if user_signed_in? %>
+              <p class="text-gray-700 text-base mb-4">
+                Get full access to the course and start learning all about web development.
+              </p>
+             <button>Purchase Course</button>
+            <% else %>
+              <p class="text-gray-700 text-base mb-4">
+                Please sign up to get full access to the course.
+              </p>
+              <%= link_to "Sign Up", new_user_registration_path, class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
+            <% end %>
+          </div>
+          </div>
+      <% end %>
     </div>
   </div>
 </div>
