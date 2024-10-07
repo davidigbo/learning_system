@@ -4,4 +4,8 @@ class Course < ApplicationRecord
   end
   has_many :lessons, dependent: :destroy
   has_and_belongs_to_many :categories
+
+  def first_lesson
+    self.lessions_order(:position).first
+  end
 end
