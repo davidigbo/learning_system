@@ -13,7 +13,10 @@
               </p>
               <%= link_to "Rewatch it", course_lesson_path(@course, @course.first_lesson), class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
             <% else %>
-
+              <p class="text-gray-700 text-base mb-4">
+                Continue learning where you left off.
+              </p>
+              <%= link_to "Continue Course", course_lesson_path(@course, @course.next_lesson(current_user)), class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
             <% end %>
           <% else %>
           <p class="text-gray-700 text-base mb-4">
