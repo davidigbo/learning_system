@@ -6,11 +6,22 @@
       </div>
       <div class="p-4">
         <% if user_signed_in? %>
+          <% if @completed_lessons&.any? %>
+            <% if @completed_lessons.count == @course.lessons.count %>
+              <p class="text-gray-700 text-base mb-4">
+                You have completed this course. Congratulations!
+              </p>
+              <%= link_to "Rewatch", course_lesson_path(@course, @course.first_lesson), class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
+            <% else %>
+
+            <% end %>
+          <% else %>
           <p class="text-gray-700 text-base mb-4">
             Start the course and begin learning all about web development.
           </p>
-          <%= link_to "Start Course", course_lesson_path(@course, @course.lessons.first), class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
-        <% else %>
+          <%= link_to "Start Course", course_lesson_path(@course, @course.first_lesson), class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
+          <% end %>
+           <% else %>
           <p class="text-gray-700 text-base mb-4">
             Please sign up to start the course.
           </p>
