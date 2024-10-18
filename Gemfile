@@ -72,3 +72,5 @@ end
 gem 'font-awesome-sass', '~> 6.4.0'
 
 gem 'devise', '~> 4.9'
+
+gem 'stripe', '~> 10.3'
