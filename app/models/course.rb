@@ -30,7 +30,7 @@ class Course < ApplicationRecord
 
     lessons = self.lessons.where.not(id: completed_lessons.pluck(:lesson_id)).order(:position)
     if lessons.any?
-      return lessons.first # Corrected from `lesson.first` to `lessons.first`
+      return lessons.first
     else
       return self.lessons.order(:position).first
     end

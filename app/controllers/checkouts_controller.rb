@@ -7,6 +7,11 @@ class CheckoutsController < ApplicationController
   def create
     course = Course.find(params[:course_id])
 
+    if course.stripe_price_id.blank?
+      flash[:error] = "The course price is not set."
+      redirect_to courses_path and return
+    end
+
     session = Stripe::Checkout::Session.create(
       mode: "payment",
       line_items: [{
