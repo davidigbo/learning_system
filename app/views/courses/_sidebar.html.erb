@@ -41,15 +41,15 @@
         <h2 class="text-white text-2xl font-bold">Get Full Access</h2>
       </div>
       <div class="p-4">
-        <% if user_signed_in? %>
-          <p class="text-gray-700 text-base mb-4">
-            Get full access to the course and start learning all about web development.
-          </p>
-          <%= form_tag checkouts_path(@course), method: :post, class: "mt-4" do %>
-            <%= hidden_field_tag :course_id, @course.id %>
-            <%= hidden_field_tag :stripeEmail, current_user.email %>
-            <%= button_tag "Unlock Full Course", class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
-          <% end %>
+              <% if user_signed_in? %>
+  <p class="text-gray-700 text-base mb-4">
+    Get full access to the course and start learning all about web development.
+  </p>
+  <%= form_tag checkouts_path(@course), method: :post, class: "mt-4", data: { turbo: false } do %>
+    <%= hidden_field_tag :course_id, @course.id %>
+    <%= hidden_field_tag :stripeEmail, current_user.email %>
+    <%= button_tag "Unlock Full Course", class: "bg-revolver-600 hover:bg-revolver-700 text-white-50 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition ease-in-out duration-150" %>
+  <% end %>
           <% else %>
             <p class="text-gray-700 text-base mb-4">
               Sign up for free today and start learning all about web development.
