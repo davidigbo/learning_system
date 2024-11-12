@@ -35,10 +35,10 @@ class WebhooksController < ApplicationController
      user = User.find_by!(email: session_customer_email)
 
      CourseUser.create!(course: course, user: user)
-    else 
-       puts "Unhandle event type: #{event.type}"
-    end     
+    else
+      puts "Unhandle event type: #{event.type}"
+    end
 
     render json: { message: 'success' }
-end 
+  end 
 end
