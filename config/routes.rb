@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   get "admin" => "admin#index"
+
+  post "/webhook" => "webhook#stripe"
   # Defines the root path route ("/")
    root "courses#index"
 end

@@ -6,6 +6,8 @@ class LessonsController < ApplicationController
   def show
     @completed_lessons = current_user.lesson_users.where(completed:true).pluck(:lesson_id)
     @course = @lesson.course
+    @paid_for_course = current_user.course_users.where(course: @course).exists?
+    puts "paid_for_course: #{@paid_for_course}"
   end
 
   def update
