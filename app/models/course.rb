@@ -6,6 +6,8 @@ class Course < ApplicationRecord
   has_many :lessons, dependent: :destroy
   has_and_belongs_to_many :categories
   has_many :course_users
+  has_many :users, through: :course_users
+ 
 
   def first_lesson
     self.lessons.order(:position).first

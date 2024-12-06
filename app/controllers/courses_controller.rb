@@ -4,16 +4,22 @@ class CoursesController < ApplicationController
   # GET /courses or /courses.json
   def index
     @courses = Course.all
-    @user_unlocked_courses = current_user&.course_users&.pluck(:course_id)
+    @user_unlock_courses = current_user.unlocked_courses.pluck(:id)
     @user_started_courses = current_user&.lesson_users&.joins(:lesson)&.pluck(:course_id)&.uniq
+  
     if @user_started_courses.present?
       @user_course_progresses = @user_started_courses.map do |course_id|
-        course_lessons = Course.find(course_id).lessons.count
-        completed_lessons = current_user&.lesson_users&.joins(:lesson).where(completed: true, lessons: { course: course_id })&.count
-        { course_id: course_id, completed_percentage: (completed_lessons.to_f / course_lessons.to_f * 100).to_i }
+        progress = current_user.lesson_users.joins(:lesson).where("lessons.course_id = ?", course_id).pluck(:progress)
+        {
+          course_id: course_id,
+          user_completed_percentage: progress.sum / progress.size
+        }
       end
+    else
+      @user_course_progresses = []
     end
   end
+  
   # GET /courses/1 or /courses/1.json
   def show
     @completed_lessons = current_user&.lesson_users&.joins(:lesson)&.where(completed: true, lessons: { course: @course })&.pluck(:lesson_id)
